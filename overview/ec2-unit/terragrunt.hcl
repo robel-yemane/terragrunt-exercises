@@ -6,14 +6,13 @@ terraform {
   source = "tfr:///terraform-aws-modules/ec2-instance/aws?version=6.1.1"
 }
 
-# dependency "vpc" {
-#   config_path = "../vpc"
-#
-# }
+ dependency "vpc" {
+  config_path = "../vpc-unit"
+   mock_outputs = {
+     private_subnets = ["mock_subnet"]
+   }
+ }
 
-dependencies {
-  paths = ["../vpc"]
-}
 
 inputs = {
   name = "single-instance"
